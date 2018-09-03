@@ -1,0 +1,52 @@
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJKdGkiOiIxMTQ5NzkifQ.5ERN44vbFdU7UmpVvysD1xCV82Q0eUfAlUYqtpumLIk
+
+
+
+
+
+
+查询：
+curl -X POST -d '{"channel":"mychannel","ccName":"chaincode_example02","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJKdGkiOiIxMTQ5NzkifQ.5ERN44vbFdU7UmpVvysD1xCV82Q0eUfAlUYqtpumLIk","fcn":"query","args":["zj"]}' https://developers.vnt.link/chaincode/query
+
+转账：
+curl -X POST -d '{"channel":"mychannel","ccName":"chaincode_example02","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJKdGkiOiIxMTQ5NzkifQ.5ERN44vbFdU7UmpVvysD1xCV82Q0eUfAlUYqtpumLIk","fcn":"transfer","args":["zj","cjs","100"]}' https://developers.vnt.link/chaincode/invoke
+
+
+tar -czf chaincode_example02.tar.gz src
+
+
+
+create table users( 
+id varchar(30) not null unique,
+phone varchar(30) not null, 
+pwd varchar(30) not null, 
+account_id int(30) AUTO_INCREMENT, 
+money varchar(30),
+primary key(account_id) 
+);
+
+create table market(
+name varchar(30) unique,
+price varchar(30) not null,
+description varchar(1000) not null,
+content varchar(20000) not null,
+author_id varchar(30),
+author_account_id varchar(30)
+);
+
+create table contract(
+name varchar(30) not null,
+price varchar(30) not null,
+description varchar(1000) not null,
+content varchar(20000) not null,
+author_id varchar(30),
+owner_id varchar(30),
+primary key(name,owner_id)
+);
+
+create table secchecks(
+id varchar(30) unique,
+content varchar(20000),
+status int(1),
+result varchar(10000)
+);
